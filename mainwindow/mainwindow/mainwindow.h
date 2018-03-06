@@ -35,7 +35,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0, HANDLE hMutex = NULL, std::vector<cv::Mat> *matList_buf = NULL);
+    explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 	void computerAndShowPictures();
 
@@ -45,6 +45,7 @@ private:
 private:
     void deleteAllItems();
     void showOneRes(cv::Mat& mat, int nIndex);
+	void showOneVideoFrame(cv::Mat& mat);
 	QButtonGroup* qButtonGroup;
     int iconWidth;
     int iconHeight;
@@ -54,17 +55,13 @@ private:
 	FaceImageFilter imagefilter_hash_face;
 	ImageFilterAlignmentFace imagefilter_alignment;
 
-public slots:  
-    void ReadFram();
-public:
-	void OnImglistBufFull(){startHandleFrame();}
-signals:  
-    void startHandleFrame();
+public slots: 
+	void OnButtonClicked();
+	void ReadFrame();
 
 private:
 	QTimer* timer; 
-    HANDLE hMutex;
-	std::vector<cv::Mat> *matList_buf;
+	cv::VideoCapture capture;
 	std::vector<cv::Mat> matList;
 };
 

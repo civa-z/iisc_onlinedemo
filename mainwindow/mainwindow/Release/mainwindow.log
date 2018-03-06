@@ -1,9 +1,32 @@
-﻿生成启动时间为 2018/3/6 11:14:08。
-     1>项目“E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow\mainwindow.vcxproj”在节点 2 上(clean 个目标)。
-     1>_PrepareForClean:
-         正在删除文件“Release\mainwindow.lastbuildstate”。
-     1>已完成生成项目“E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow\mainwindow.vcxproj”(clean 个目标)的操作。
+﻿生成启动时间为 2018/3/6 15:02:16。
+     1>项目“E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow\mainwindow.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Release\mainwindow.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       CustomBuild:
+         所有输出均为最新。
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /IC:\Qt\4.8.7\include /I.\GeneratedFiles\Release /IC:\Qt\4.8.7\include\QtCore /IC:\Qt\4.8.7\include\QtGui /I.\ /I.\include\FA /ID:\software\opencv\build\include\opencv /ID:\software\opencv\build\include\opencv2 /nologo /W1 /WX- /O2 /Oy- /D UNICODE /D WIN32 /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt mainwindow.cpp
+         mainwindow.cpp
+         所有输出均为最新。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Work\IISC_2017\onlinedemo\mainwindow\\mainwindow.exe" /NOLOGO /LIBPATH:C:\Qt\4.8.7\lib /LIBPATH:D:\software\opencv\build\x86\vc10\lib /LIBPATH:C:\Qt\4.8.7\lib /LIBPATH:.\lib\x86\vc10\release qtmain.lib QtCore4.lib QtGui4.lib opencv_highgui249.lib opencv_imgproc249.lib opencv_core249.lib FaceAlignment.lib libsface.lib libsface_dict.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /PDB:"E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow.lib" /MACHINE:X86 Release\compute.obj
+         Release\facerecognizer.obj
+         Release\imagefilter_alignment_face.obj
+         Release\imagefilter_hash_face.obj
+         Release\qrc_mainwindow.obj
+         Release\moc_mainwindow.obj
+         Release\imagefilter_hash.obj
+         Release\main.obj
+         Release\mainwindow.obj
+         libsface.lib(face0.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+         正在生成代码
+         已完成代码的生成
+         mainwindow.vcxproj -> E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow.exe
+       FinalizeBuildStatus:
+         正在删除文件“Release\mainwindow.unsuccessfulbuild”。
+         正在对“Release\mainwindow.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\Work\IISC_2017\onlinedemo\mainwindow\mainwindow\mainwindow.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.12
+已用时间 00:00:02.33

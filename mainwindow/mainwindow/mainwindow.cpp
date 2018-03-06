@@ -8,17 +8,15 @@
 
 
 using namespace std;
-MainWindow::MainWindow(QWidget *parent, HANDLE hMutex, std::vector<cv::Mat> *matList_buf) :
+MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-	hMutex(hMutex),
-	matList_buf(matList_buf),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     iconWidth = ui->resWidget->width() / 2;
     iconHeight = ui->resWidget->height() / 2;
-    iconWidth = 192;
-    iconHeight = 192;
+    iconWidth = 96;
+    iconHeight = 96;
     ui->resWidget->setIconSize(QSize(iconWidth, iconHeight));
     ui->resWidget->setResizeMode(QListView::Adjust);
     ui->resWidget->setViewMode(QListView::IconMode);
@@ -31,7 +29,9 @@ MainWindow::MainWindow(QWidget *parent, HANDLE hMutex, std::vector<cv::Mat> *mat
     qButtonGroup->addButton(ui->radioButton_Alignment, 3);
 
 	timer =new QTimer(this);
-	connect(this, SIGNAL(startHandleFrame()),this, SLOT(ReadFram())); 
+	connect(timer, SIGNAL(timeout()),this, SLOT(ReadFrame()));
+	connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(OnButtonClicked()));
+	
 }
 
 MainWindow::~MainWindow()
@@ -40,15 +40,48 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::OnButtonClicked(){
+	capture =  cv::VideoCapture(0);
+	timer->start(50);
+}
 
-void MainWindow::ReadFram(){
-	WaitForSingleObject(hMutex, INFINITE);//临界区开始  30ms
-	matList = *matList_buf;
-	matList_buf->clear();
-	ReleaseMutex(hMutex);//临界区结束 
+void MainWindow::ReadFrame(){
+	if (capture.isOpened()){
+		cv::Mat frame; 
+		capture >> frame;
+		showOneVideoFrame(frame);
+		cv::Mat frame_tmp = frame.clone();
+		matList.push_back(frame_tmp);
+	}
+	if (matList.size() == 10){
+		computerAndShowPictures();
+		matList.clear();
+	}
+}
 
-	computerAndShowPictures();
-	matList.clear();
+void MainWindow::showOneVideoFrame(cv::Mat& mat){
+	QImage qimg;
+	cv::Mat rgb;
+	if(mat.channels() == 3)    // RGB image  
+	{  
+		cv::cvtColor(mat,rgb,CV_BGR2RGB);  
+		qimg = QImage((const uchar*)(rgb.data),  //(const unsigned char*)  
+						rgb.cols,rgb.rows,  
+						rgb.cols*rgb.channels(),   //new add  
+						QImage::Format_RGB888);  
+	}else                     // gray image  
+	{  
+		qimg = QImage((const uchar*)(mat.data),  
+						mat.cols, mat.rows,  
+						mat.cols * mat.channels(),    //new add  
+						QImage::Format_Indexed8);  
+	}
+	QPixmap img = QPixmap::fromImage(qimg);
+	double ratio = (double)max((double)img.width() / ui->videoWidget->width(),
+		(double)img.height() / ui->videoWidget->height());
+
+	ui->videoWidget->setPixmap(img.scaled(QSize(img.width() / ratio, img.height() /ratio)));  
+	ui->videoWidget->show(); 
 }
 
 /*Display one result to front-end*/
@@ -71,8 +104,8 @@ void MainWindow::showOneRes(cv::Mat& mat, int nIndex) {
 	}
     QPixmap img = QPixmap::fromImage(qimg);
     double ratio = (double)max(img.width(), img.height()) / (iconWidth);
-    int itemWidth = img.width() / 2;
-    int itemHeight = img.height() / 2;
+    int itemWidth = img.width() / ratio;
+    int itemHeight = img.height() / ratio;
 
     QListWidgetItem *pItem = new QListWidgetItem(ui->resWidget);
     pItem->setIcon(QIcon(img.scaled(QSize(itemWidth,itemHeight))));

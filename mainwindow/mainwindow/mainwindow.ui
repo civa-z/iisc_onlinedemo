@@ -23,7 +23,7 @@
       <height>431</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" columnstretch="1,1,1,1">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="1,1,1,1">
      <property name="horizontalSpacing">
       <number>5</number>
      </property>
@@ -37,20 +37,6 @@
        </property>
        <property name="checked">
         <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLabel" name="label_result">
-       <property name="text">
-        <string>Result</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="3">
-      <widget class="QLabel" name="label_video">
-       <property name="text">
-        <string>Video</string>
        </property>
       </widget>
      </item>
@@ -75,8 +61,29 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0" colspan="4">
+     <item row="2" column="2" colspan="2">
       <widget class="QListWidget" name="resWidget"/>
+     </item>
+     <item row="1" column="2" colspan="2">
+      <widget class="QLabel" name="label_result">
+       <property name="text">
+        <string>Result</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QLabel" name="label_video">
+       <property name="text">
+        <string>Video</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="QLabel" name="videoWidget">
+       <property name="text">
+        <string>video</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
