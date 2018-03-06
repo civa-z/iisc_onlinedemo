@@ -7,6 +7,8 @@ AlignmentFeatureType ImageFilterAlignmentFace::computeFeature(cv::Mat &img){
 		return alignmentFeature;
 
 	std::vector<BoundingBox> boundingBoxList = faceRecognizer->getBoundingBox(img);
+	if (boundingBoxList.size() == 0)
+		return alignmentFeature;
 	std::vector<float>  faceshape = faceRecognizer->GetFaceShapes(img, boundingBoxList[0]);
 
 	for (int i = 0; i < faceshape.size() / 2; ++i)

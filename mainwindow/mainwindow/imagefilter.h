@@ -26,7 +26,7 @@ public:
 	}
 
 	void setPictureList(std::vector<cv::Mat> &piclist){
-		picList = piclist;
+		this->picList = piclist;
 	}
 
 	std::vector<std::vector<double>> computeSimilarity(){

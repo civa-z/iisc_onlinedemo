@@ -17,7 +17,7 @@
 std::string FaceImageFilter::HashValue(cv::Mat &src){
 	if (nullptr == faceRecognizer)
 		return "";
-	std::cout<<"Begin FaceImageFilter::HashValue"<<std::endl;
+	
 	std::vector<BoundingBox> boundingBoxList = faceRecognizer->getBoundingBox(src);
 	if (0 == boundingBoxList.size())
 		return "";

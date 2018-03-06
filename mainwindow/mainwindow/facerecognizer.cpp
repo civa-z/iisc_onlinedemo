@@ -29,7 +29,6 @@ FaceRecognizer::FaceRecognizer(char* modelPath):sFAsample(modelPath){
 	 cv::Mat_<uchar> image = img;
 	 std::vector<BoundingBox> boundingBoxList;
 	
-	cv::waitKey(0);
 	equalizeHist( image, image);
 
 	int   workSize = sFaceDetectionGetWorkingMemorySize(image.cols,image.rows, image.cols, detectDictPtr);
