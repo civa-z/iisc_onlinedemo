@@ -1,0 +1,52 @@
+﻿生成启动时间为 2018/2/12 17:35:30。
+     1>项目“E:\Work\IISC_2017\mainwindow\mainwindow\mainwindow\mainwindow.vcxproj”在节点 2 上(rebuild 个目标)。
+     1>_PrepareForClean:
+         正在删除文件“Debug\mainwindow.lastbuildstate”。
+       InitializeBuildStatus:
+         正在对“Debug\mainwindow.unsuccessfulbuild”执行 Touch 任务。
+       CustomBuild:
+         Moc'ing mainwindow.h...
+         Uic'ing mainwindow.ui...
+         Rcc'ing mainwindow.qrc...
+     1>RCC : warning : No resources in 'E:\Work\IISC_2017\mainwindow\mainwindow\mainwindow\mainwindow.qrc'.
+         
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /IC:\Qt\4.8.7\include /I.\GeneratedFiles\Debug /IC:\Qt\4.8.7\include\QtCore /IC:\Qt\4.8.7\include\QtGui /ID:\software\opencv\build\include\opencv2 /ID:\software\opencv\build\include\opencv /IE:\Work\IISC_2017\LBF_Face_Alignment_for_MJ\include\FA /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D QT_CORE_LIB /D QT_GUI_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt compute.cpp facerecognizer.cpp imagefilter_alignment_face.cpp imagefilter_hash_face.cpp GeneratedFiles\Debug\moc_mainwindow.cpp imagefilter_hash.cpp main.cpp mainwindow.cpp
+         compute.cpp
+     1>compute.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+         facerecognizer.cpp
+         imagefilter_alignment_face.cpp
+         imagefilter_hash_face.cpp
+         moc_mainwindow.cpp
+         imagefilter_hash.cpp
+         main.cpp
+         mainwindow.cpp
+         正在生成代码...
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\GeneratedFiles /IC:\Qt\4.8.7\include /I.\GeneratedFiles\Debug /IC:\Qt\4.8.7\include\QtCore /IC:\Qt\4.8.7\include\QtGui /ID:\software\opencv\build\include\opencv2 /ID:\software\opencv\build\include\opencv /IE:\Work\IISC_2017\LBF_Face_Alignment_for_MJ\include\FA /Zi /nologo /W1 /WX- /Od /Oy- /D UNICODE /D WIN32 /D QT_CORE_LIB /D QT_GUI_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t- /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt GeneratedFiles\qrc_mainwindow.cpp
+         qrc_mainwindow.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Work\IISC_2017\mainwindow\mainwindow\\mainwindow.exe" /NOLOGO /LIBPATH:C:\Qt\4.8.7\lib /LIBPATH:D:\software\opencv\build\x86\vc10\lib /LIBPATH:E:\Work\IISC_2017\LBF_Face_Alignment_for_MJ\lib\x86\vc10\debug qtmaind.lib QtCored4.lib QtGuid4.lib opencv_highgui249d.lib opencv_imgproc249d.lib opencv_core249d.lib FaceAlignment.lib libsface.lib libsface_dict.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\mainwindow.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Work\IISC_2017\mainwindow\mainwindow\mainwindow.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Work\IISC_2017\mainwindow\mainwindow\mainwindow.lib" /MACHINE:X86 Debug\compute.obj
+         Debug\facerecognizer.obj
+         Debug\imagefilter_alignment_face.obj
+         Debug\imagefilter_hash_face.obj
+         Debug\moc_mainwindow.obj
+         Debug\qrc_mainwindow.obj
+         Debug\imagefilter_hash.obj
+         Debug\main.obj
+         Debug\mainwindow.obj
+         FaceAlignment.lib(sfacealignment.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+     1>libsface.lib(face0.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(fdt001.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(face1.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(fdt000.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(scn000.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(cls004.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(scn001.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>libsface.lib(sfu010.obj) : error LNK2038: 检测到“_ITERATOR_DEBUG_LEVEL”的不匹配项: 值“0”不匹配值“2”(compute.obj 中)
+     1>LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+     1>E:\Work\IISC_2017\mainwindow\mainwindow\\mainwindow.exe : fatal error LNK1319: 检测到 8 个不匹配项
+     1>已完成生成项目“E:\Work\IISC_2017\mainwindow\mainwindow\mainwindow\mainwindow.vcxproj”(rebuild 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:07.51
