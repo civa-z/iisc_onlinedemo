@@ -26,7 +26,8 @@ FaceRecognizer::FaceRecognizer(char* modelPath):sFAsample(modelPath){
 }
 
  std::vector<BoundingBox> FaceRecognizer::getBoundingBox(cv::Mat img){
-	 cv::Mat_<uchar> image = img;
+	 cv::Mat_<uchar> image;
+	 cvtColor(img,image,CV_BGR2GRAY);
 	 std::vector<BoundingBox> boundingBoxList;
 	
 	cv::waitKey(0);

@@ -42,7 +42,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::OnButtonClicked(){
 	capture =  cv::VideoCapture(0);
-	timer->start(50);
+	timer->start(100);
 }
 
 void MainWindow::ReadFrame(){
@@ -53,7 +53,7 @@ void MainWindow::ReadFrame(){
 		cv::Mat frame_tmp = frame.clone();
 		matList.push_back(frame_tmp);
 	}
-	if (matList.size() == 10){
+	if (matList.size() == 30){
 		computerAndShowPictures();
 		matList.clear();
 	}
