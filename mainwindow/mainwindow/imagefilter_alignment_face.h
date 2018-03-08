@@ -15,9 +15,11 @@ public:
 	}
 	virtual AlignmentFeatureType computeFeature(cv::Mat &img);
 	virtual double computeFeatureDistance(AlignmentFeatureType f1, AlignmentFeatureType f2);
+	virtual void renderImage(cv::Mat &img);
 
 private:
 	FaceRecognizer *faceRecognizer;
+	AlignmentFeatureType alignmentFeature;
 };
 
 #endif

@@ -13,55 +13,48 @@ template<typename FeatureType>
 class ImageFilter{
 public:
 	ImageFilter(){}
-	void setFileList(std::vector<std::string> f){
-		fileList = f;
-		std::cout<<"Begin setFileList"<<std::endl;
-		picList.clear();
-		for (int i = 0; i < fileList.size(); ++i) {
-			std::cout<<"Begin imread"<<std::endl;
-			cv::Mat pic = cv::imread(fileList[i], 0);
-			std::cout<<"Begin push_back imread"<<std::endl;
-			picList.push_back(pic);
-		}
+	bool prepareFeature(std::string file_path){
+		cv::Mat mat = cv::imread(file_path, 0);
+		feature = computeFeature(mat);
+		featureList.push_back(feature);
+		return true;
 	}
 
-	void setPictureList(std::vector<cv::Mat> &piclist){
-		picList = piclist;
+	bool prepareFeature(cv::Mat &mat){
+		FeatureType feature = computeFeature(mat);
+		featureList.push_back(feature);
+		return true;
 	}
 
 	std::vector<std::vector<double>> computeSimilarity(){
-		computeFeatureList();
-		computeSimilarityMatrix();
-		return similarity;
-	}
-	~ImageFilter(){}
-
-protected:
-	virtual FeatureType computeFeature(cv::Mat &img) = 0;
-	virtual double computeFeatureDistance(FeatureType f1, FeatureType f2) = 0;
-
-private:
-	void computeFeatureList(){
-		featureList.clear();
-		for (int i = 0; i < picList.size(); ++i) {
-			featureList.push_back(computeFeature(picList[i]));
-		}
-	}
-	void computeSimilarityMatrix(){
-		similarity.clear();
+		std::vector<std::vector<double>> similarity;
+		
 		for (int i = 0; i < featureList.size(); ++i) {
 			std::vector<double> tmp;
-			for (int j = 0; j < featureList.size(); ++j)
+			for (int j = 0; j < featureList.size(); ++j){
 				tmp.push_back(computeFeatureDistance(featureList[i], featureList[j]) / 256);
+			}
 			similarity.push_back(tmp);
 		}
+		featureList.clear();
+		return similarity;
 	}
 
+	void reset(){
+		featureList.clear();
+	}
+
+	~ImageFilter(){}
+
+public:
+	virtual void renderImage(cv::Mat &img){}
+protected:
+	virtual double computeFeatureDistance(FeatureType f1, FeatureType f2) = 0;
+	virtual FeatureType computeFeature(cv::Mat &img) = 0;
+	
+
 private:
-	std::vector<std::string> fileList;
-	std::vector<cv::Mat> picList;
 	std::vector<FeatureType> featureList;
-	std::vector<std::vector<double>> similarity;
 };
 
 #endif

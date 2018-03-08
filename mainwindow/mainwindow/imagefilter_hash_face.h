@@ -18,9 +18,10 @@ public:
 		return true;
 	}
 	virtual std::string HashValue(cv::Mat &src);
-
+	virtual void renderImage(cv::Mat &img);
 private:
 	FaceRecognizer* faceRecognizer;
+	std::vector<BoundingBox> boundingBoxList;
 	std::vector<std::string> hashstring;
 	
 };

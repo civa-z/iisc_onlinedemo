@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QAction>
+#include <QMessageBox>
 #include <iostream>
 #include <algorithm>
 
@@ -31,7 +32,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	timer =new QTimer(this);
 	connect(timer, SIGNAL(timeout()),this, SLOT(ReadFrame()));
 	connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(OnButtonClicked()));
-	
+	connect(ui->radioButton_Scene, SIGNAL(clicked()), this, SLOT(OnTypeButtonClicked()));
+	connect(ui->radioButton_Face, SIGNAL(clicked()), this, SLOT(OnTypeButtonClicked()));
+	connect(ui->radioButton_Alignment, SIGNAL(clicked()), this, SLOT(OnTypeButtonClicked()));
+	filterType = "sence";	
 }
 
 MainWindow::~MainWindow()
@@ -41,19 +45,40 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::OnButtonClicked(){
+	imagefilter_hash_face.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
+	imagefilter_alignment.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
 	capture =  cv::VideoCapture(0);
+	if (!capture.isOpened()) {
+		QMessageBox::warning(this,tr("error"),tr("capture is not opened"),QMessageBox::Ok);
+		return;
+	}
 	timer->start(100);
+}
+
+void MainWindow::OnTypeButtonClicked(){
+	filterType = getFilterType();
+	imagefilter_hash_face.reset();
+	imagefilter_alignment.reset();
+	matList.clear();
+	std::cout<<std::endl<<"Start "<<filterType<<std::endl<<std::fflush;
 }
 
 void MainWindow::ReadFrame(){
 	if (capture.isOpened()){
-		cv::Mat frame; 
+		cv::Mat frame;
 		capture >> frame;
+		matList.push_back(frame.clone());
+
+		if(filterType == "Face"){
+			imagefilter_hash_face.prepareFeature(frame.clone());
+			imagefilter_hash_face.renderImage(frame);
+		} else if (filterType == "Alignment"){
+			imagefilter_alignment.prepareFeature(frame.clone());
+			imagefilter_alignment.renderImage(frame);
+		}
 		showOneVideoFrame(frame);
-		cv::Mat frame_tmp = frame.clone();
-		matList.push_back(frame_tmp);
-	}
-	if (matList.size() == 30){
+	} 
+	if (matList.size() == 10){
 		computerAndShowPictures();
 		matList.clear();
 	}
@@ -134,28 +159,22 @@ std::string MainWindow::getFilterType(){
 
 void MainWindow::computerAndShowPictures(){
 	ui->resWidget->clear();
-	string filterType = getFilterType();
+	
 	vector<vector<double>> similarity;
-	std::cout<<"filterType: "<<filterType<<std::endl<<std::fflush;
-
+	std::cout<<std::endl<<"Computer "<<filterType<<std::endl<<std::fflush;
 	if (filterType.compare("Face") == 0){
-		std::cout<<std::endl<<"Start Face"<<std::endl<<std::fflush;
-		imagefilter_hash_face.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
-		imagefilter_hash_face.setPictureList(matList);
 		similarity = imagefilter_hash_face.computeSimilarity();
 	} else if (filterType.compare("Alignment") == 0){
-		imagefilter_alignment.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
-		imagefilter_alignment.setPictureList(matList);
 		similarity = imagefilter_alignment.computeSimilarity();
 	} else {
-		std::cout<<std::endl<<"Start Sence"<<std::endl<<std::fflush;
 		similarity = computeSimilarity_HASH(matList);
 	}
 
     int nIndex = 0;
+	std::cout<<"ShowPictures similarity.size():"<<similarity.size()<<std::endl<<std::flush;
     vector<int> result = getPictures(similarity);
     for (int i = 0; i < result.size(); ++i) {
-		std::cout<<std::endl<<"Start Face:"<<result[i]<<std::endl<<std::fflush;
+		std::cout<<"ShowPictures:"<<result[i]<<std::endl<<std::flush;
         showOneRes(matList[result[i]], nIndex);
         nIndex++;
     }

@@ -57,12 +57,14 @@ private:
 
 public slots: 
 	void OnButtonClicked();
+	void OnTypeButtonClicked();
 	void ReadFrame();
 
 private:
 	QTimer* timer; 
 	cv::VideoCapture capture;
 	std::vector<cv::Mat> matList;
+	string filterType;
 };
 
 #endif // MAINWINDOW_H
