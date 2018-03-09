@@ -113,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;D:\software\opencv\build\x86\vc10\lib;C:\Qt\4.8.7\lib;.\lib\x86\vc10\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;D:\software\opencv\build\x86\vc10\lib;C:\Qt\4.8.7\lib;.\lib\x86\vc10\release;.\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGui4.lib;opencv_highgui249.lib;opencv_imgproc249.lib;opencv_core249.lib;FaceAlignment.lib;libsface.lib;libsface_dict.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>

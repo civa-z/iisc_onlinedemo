@@ -45,8 +45,8 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::OnButtonClicked(){
-	imagefilter_hash_face.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
-	imagefilter_alignment.loadFaceRecognizer("E:\\Work\\IISC_2017\\LBF_Face_Alignment_for_MJ\\data\\FA\\");
+	imagefilter_hash_face.loadFaceRecognizer("./data/FA/");
+	imagefilter_alignment.loadFaceRecognizer("./data/FA/");
 	capture =  cv::VideoCapture(0);
 	if (!capture.isOpened()) {
 		QMessageBox::warning(this,tr("error"),tr("capture is not opened"),QMessageBox::Ok);
