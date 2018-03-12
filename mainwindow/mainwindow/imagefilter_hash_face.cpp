@@ -31,5 +31,5 @@ void FaceImageFilter::renderImage(cv::Mat &img){
 	cv::rectangle(img,
 		cv::Point(boundingBoxList[i].start_x,boundingBoxList[i].start_y),
 		cv::Point(boundingBoxList[i].start_x + boundingBoxList[i].width,boundingBoxList[i].start_y + boundingBoxList[i].height),
-		cv::Scalar(0,255,0), 1, 8, 0);  
+		cv::Scalar(0,255,0), 2, 8, 0);  
 }
